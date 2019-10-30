@@ -1,17 +1,21 @@
-import { useObserver } from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { useStoreContext } from "../contexts/StoreContext";
 
-export const CityList = () => {
-  const { allCities } = useStoreContext();
+const CityList = observer(() => {
+  const { filteredCities } = useStoreContext();
 
-  return useObserver(() => (
+  if (!filteredCities.length) {
+    return <p>No cities match search</p>;
+  }
+
+  return (
     <ul>
-      {allCities.map(city => (
+      {filteredCities.map(city => (
         <li key={city}>{city}</li>
       ))}
     </ul>
-  ));
-};
+  );
+});
 
 export default CityList;
