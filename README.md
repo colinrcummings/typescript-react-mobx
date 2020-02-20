@@ -10,7 +10,7 @@
 
 ## Test
 
-`$ npm tests`
+`$ npm test`
 
 ## Build
 
